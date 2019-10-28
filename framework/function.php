@@ -8,4 +8,3 @@ function dump($val){
     var_dump($val);
     echo '</pre>';
 }
- 

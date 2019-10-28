@@ -16,7 +16,8 @@ class Request{
         $path_info = substr($path_info, 1);
         $url_path_arr = explode('/', $path_info);
 
-        $default_routing_arr = Config::get('base', 'routing');
+        $config = App::getConfig();
+        $default_routing_arr = $config::get('routing');
         self::$moudle = Tool::input_check($url_path_arr[0], $default_routing_arr['moudle']);
         self::$controller = Tool::input_check($url_path_arr[1], $default_routing_arr['controller']);
         self::$method = Tool::input_check($url_path_arr[2], $default_routing_arr['method']);

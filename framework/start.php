@@ -3,13 +3,7 @@
  * User: lp
  * Time: 2019/10/27--10:01
  */
-
-/*
- * 定义路径常量
- *
- * 实例app->send
- *
- * */
+$start_time = microtime(true);
 define('ROOT_PATH', __DIR__.DS.'..'.DS);
 define('FRAME_PATH', ROOT_PATH.'framework'.DS);
 define('APP_PATH', ROOT_PATH.'app'.DS);
@@ -21,7 +15,7 @@ if (!APP_DEBUG){
 }
 
 //加载函数
-include FRAME_PATH.'/function.php';
+include FRAME_PATH.'function.php';
 //自动加载
 include FRAME_PATH.'core/Loder.php';
 \framework\core\Loder::init();
@@ -29,5 +23,8 @@ include FRAME_PATH.'core/Loder.php';
 \framework\core\Error::init();
 //执行
 \framework\core\App::init();
+
+$end_time = microtime(true);
+echo '<script>console.log('.($end_time-$start_time).')</script>';
 
 

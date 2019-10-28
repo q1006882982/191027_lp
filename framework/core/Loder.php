@@ -26,15 +26,11 @@ class Loder{
             $file_path = FRAME_PATH.$path_str.'.php';
             if (is_file($file_path)){
                 include $file_path;
-            }else{
-                throw new \Exception('文件不存在: '.$file_path);
             }
         }elseif($name_pre == 'app'){
             $file_path = APP_PATH.$path_str.'.php';
             if (is_file($file_path)){
                 include $file_path;
-            }else{
-                throw new \Exception('文件不存在: '.$file_path);
             }
         }
     }

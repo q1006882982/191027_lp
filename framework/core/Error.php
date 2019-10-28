@@ -9,12 +9,12 @@ class Error{
     public static function init()
     {
         error_reporting(E_ALL);
-        set_exception_handler([__CLASS__, 'app_exception']);
-        set_error_handler([__CLASS__, 'app_error']);
-        register_shutdown_function([__CLASS__, 'app_shutdown']);
+        set_exception_handler([__CLASS__, 'appException']);
+        set_error_handler([__CLASS__, 'appError']);
+        register_shutdown_function([__CLASS__, 'appShutdown']);
     }
 
-    public static function app_exception($e)
+    public static function appException($e)
     {
         $time = date('Y-m-d H:i:s');
         $str = " time {$time} exception_handler: code {$e->getCode()} 
@@ -24,7 +24,7 @@ class Error{
             echo $str;
         }
     }
-    public static function app_error($type, $message, $file, $line)
+    public static function appError($type, $message, $file, $line)
     {
         $time = date('Y-m-d H:i:s');
         $str = "{$time} set_error_handler
@@ -36,7 +36,7 @@ class Error{
             //log
         }
     }
-    public static function app_shutdown()
+    public static function appShutdown()
     {
         if ($error = error_get_last()) {
             $time = date('Y-m-d H:i:s');
