@@ -14,13 +14,20 @@ class Request{
     {
         $path_info = $_SERVER['PATH_INFO'];
         $path_info = substr($path_info, 1);
-        $url_path_arr = explode('/', $path_info);
-
         $config = App::getConfig();
         $default_routing_arr = $config::get('routing');
-        self::$moudle = Tool::input_check($url_path_arr[0], $default_routing_arr['moudle']);
-        self::$controller = Tool::input_check($url_path_arr[1], $default_routing_arr['controller']);
-        self::$method = Tool::input_check($url_path_arr[2], $default_routing_arr['method']);
+        $default_module = $default_routing_arr['moudle'];
+        $default_controller = $default_routing_arr['controller'];
+        $default_method = $default_routing_arr['method'];
+        //path_info=''
+        if (empty($path_info)){
+            $path_info = $default_module.'/'.$default_controller.'/'.$default_method;
+        }
+        $url_path_arr = explode('/', $path_info);
+        //path_info非法
+        self::$moudle = Tool::inputCheck($url_path_arr[0], $default_module);
+        self::$controller = Tool::inputCheck($url_path_arr[1], $default_controller);
+        self::$method = Tool::inputCheck($url_path_arr[2], $default_method);
     }
 
     public static function getMoudle()
@@ -38,4 +45,3 @@ class Request{
         return self::$method;
     }
 }
- 

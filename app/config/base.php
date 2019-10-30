@@ -6,7 +6,7 @@
 //命名规则::自然语言
 return [
     'routing'=>[
-        'moudle'=>'index'
+        'moudle'=>'admin'
         ,'controller'=>'index'
         ,'method'=>'index'
     ]

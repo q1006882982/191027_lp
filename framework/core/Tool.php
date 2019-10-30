@@ -6,7 +6,7 @@
 namespace framework\core;
 
 class Tool{
-    public static function input_check($data, $default='')
+    public static function inputCheck($data, $default='')
     {
         $pattern = '/^[a-zA-Z]+$/i';
         if(preg_match($pattern, $data)){
