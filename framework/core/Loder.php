@@ -17,8 +17,13 @@ class Loder{
 
         array_shift($name_arr);
         $path_str = '';
-        foreach ($name_arr as $item) {
-            $path_str .= $item.DS;
+        $name_count = count($name_arr);
+        foreach ($name_arr as $key=>$item) {
+            if ($key == ($name_count-1)){
+                $path_str .= ucfirst($item).DS;
+            }else{
+                $path_str .= $item.DS;
+            }
         }
         $path_str = substr($path_str, 0, -1);
 

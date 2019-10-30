@@ -14,9 +14,8 @@ class Index extends Controller
     public function index()
     {
         echo 'hi';
-        $res = Db::table('user')->select();
-        $this->assign('res', $res);
-        $this->display();
+        echo '<br>';
+        echo '这是一个新网站';
     }
 }
  
