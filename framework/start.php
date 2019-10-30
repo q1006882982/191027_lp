@@ -8,6 +8,7 @@ define('ROOT_PATH', __DIR__.DS.'..'.DS);
 define('FRAME_PATH', ROOT_PATH.'framework'.DS);
 define('APP_PATH', ROOT_PATH.'app'.DS);
 define('CONFIG_PATH', ROOT_PATH.'app'.DS.'config'.DS);
+define('STATIC_PATH', ROOT_PATH.'app'.DS.'public'.DS.'static'.DS);
 define('APP_DEBUG', true);
 
 if (!APP_DEBUG){
