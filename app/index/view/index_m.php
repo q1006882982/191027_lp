@@ -8,18 +8,19 @@
     <title>m</title>
 </head>
 <body>
-<div id="m">m</div>
+<div id="m">mmmmm</div>
 </body>
 
 <script src="/static/common/lib/jquery.1.12/jquery.js"></script>
 <script>
     $.ajax({
         type: 'GET'
-        ,url: 'http://hi.lp123456.com/admin/api/info'
+        ,url: 'http://hi.lp123456.com/api/index/info'
         ,data: {}
         ,dataType: 'json'
         ,success: function (data){
-            console.log(data);
+            // console.log(data);
+            console.log('hi');
         }
     });
 </script>

@@ -10,6 +10,7 @@ define('APP_PATH', ROOT_PATH.'app'.DS);
 define('CONFIG_PATH', ROOT_PATH.'app'.DS.'config'.DS);
 define('STATIC_PATH', ROOT_PATH.'app'.DS.'public'.DS.'static'.DS);
 define('APP_DEBUG', true);
+define('TIME', false);
 
 if (!APP_DEBUG){
     ini_set('display_errors', 'Off');
@@ -26,6 +27,8 @@ include FRAME_PATH.'core/Loder.php';
 \framework\core\App::init();
 
 $end_time = microtime(true);
-echo '<script>console.log('.($end_time-$start_time).')</script>';
+if (TIME){
+    echo '<script>console.log('.($end_time-$start_time).')</script>';
+}
 
 
