@@ -4,18 +4,27 @@
  * Time: 2019/10/27--17:23
  */
 namespace framework\core\mvc;
-use framework\core\App;
+use framework\core\mtrait\Container_common;
+
 
 class Controller{
+    /**
+     * trait container
+     */
+    use Container_common;
+
     protected $module = '';
     protected $controller = '';
     protected $method = '';
+    /**
+     * @var Model
+     */
     protected $model = null;
     protected $view_param = [];
 
     public function __construct()
     {
-        $request = App::getRequest();
+        $request = $this->getRequest();
         $module = $request::getMoudle();
         $fc = $request::getController();
         $method = $request::getMethod();
@@ -27,21 +36,25 @@ class Controller{
         $model_path = APP_PATH.$module.DS.'model'.DS.$fc.'.php';
         if (is_file($model_path)){
             $model_name = 'app\\'.$module.'\\model\\'.$fc;
-            $this->model = (new \ReflectionClass($model_name))->newInstance();
+            $this->model = new $model_name();
         }
     }
 
+    /**
+     * 模版变量注入
+     * @param $key
+     * @param $val
+     */
     protected function assign($key, $val){
         $this->view_param[$key] = $val;
     }
-
     /**
      * 只需要传入文件名, 例如 index_index
      * 其余路径在config中配置
      * @param $path
      */
     protected function display($path=''){
-        $config = App::getConfig();
+        $config = $this->getConfig();
         $path = empty($path) ? $this->controller . '_' . $this->method : $path;
         $template_config = $config::get('template');
         $view_suffix = $template_config['suffix'];

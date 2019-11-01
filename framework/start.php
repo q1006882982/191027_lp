@@ -9,8 +9,8 @@ define('FRAME_PATH', ROOT_PATH.'framework'.DS);
 define('APP_PATH', ROOT_PATH.'app'.DS);
 define('CONFIG_PATH', ROOT_PATH.'app'.DS.'config'.DS);
 define('STATIC_PATH', ROOT_PATH.'app'.DS.'public'.DS.'static'.DS);
-define('APP_DEBUG', true);
-define('TIME', false);
+define('LIB_PATH', ROOT_PATH.'app'.DS.'lib'.DS);
+define('RUN_PATH', ROOT_PATH.'runtime'.DS);
 
 if (!APP_DEBUG){
     ini_set('display_errors', 'Off');

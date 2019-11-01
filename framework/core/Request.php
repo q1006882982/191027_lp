@@ -44,4 +44,67 @@ class Request{
     {
         return self::$method;
     }
+
+    public static function fget($key='', $default=false)
+    {
+        $get = [];
+        $pattern = '/^[0-9a-zA-Z\.]+$/i';
+        if (empty($key)){
+            foreach ($_GET as $key=>$item) {
+                if (preg_match($pattern, $item)){
+                    $get[$key] = $item;
+                }
+            }
+            return $get;
+        }
+
+        if (preg_match($pattern, $_GET[$key])){
+            $get[$key] = $_GET[$key];
+        }else{
+            $get[$key] = $default;
+        }
+        return $get[$key];
+    }
+
+    public static function fpost($key='', $default=false)
+    {
+        $get = [];
+        $pattern = '/^[0-9a-zA-Z\.]+$/i';
+        if (empty($key)){
+            foreach ($_POST as $key=>$item) {
+                if (preg_match($pattern, $item)){
+                    $get[$key] = $item;
+                }
+            }
+            return $get;
+        }
+
+        if (preg_match($pattern, $_POST[$key])){
+            $get[$key] = $_POST[$key];
+        }else{
+            $get[$key] = $default;
+        }
+        return $get[$key];
+    }
+
+    public static function isGet()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            return true;
+        }
+        return false;
+    }
+
+    public static function isPost()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            return true;
+        }
+        return false;
+    }
+
+    public static function url($module, $controller, $method)
+    {
+
+    }
 }

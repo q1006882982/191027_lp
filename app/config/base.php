@@ -25,5 +25,9 @@ return [
         ,'admin'=>APP_PATH.'admin'.DS.'view'
         ,'index'=>APP_PATH.'index'.DS.'view'
     ]
+    ,'cache'=>[
+        //file, redis
+        'type'=>'file'
+    ]
 ];
  

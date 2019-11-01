@@ -5,14 +5,11 @@
  */
 namespace app\admin\model;
 
-use framework\core\Db;
 use framework\core\mvc\Model;
 
 class Index extends Model
 {
-    public function all()
-    {
-        return Db::table('user')->select();
-    }
+    protected $main_table = 'user';
+
 }
  

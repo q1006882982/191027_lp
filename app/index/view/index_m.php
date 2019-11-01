@@ -13,14 +13,21 @@
 
 <script src="/static/common/lib/jquery.1.12/jquery.js"></script>
 <script>
+    console.log('hi111');
+
     $.ajax({
         type: 'GET'
         ,url: 'http://hi.lp123456.com/api/index/info'
         ,data: {}
         ,dataType: 'json'
         ,success: function (data){
-            // console.log(data);
-            console.log('hi');
+            console.log(data);
+        }
+        ,error: function (data){
+            // console.log('error');
+        }
+        ,complete: function (){
+            // console.log('compltete');
         }
     });
 </script>

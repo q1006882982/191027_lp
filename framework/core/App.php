@@ -43,14 +43,19 @@ class App{
         }
     }
 
+    public static function getRequest()
+    {
+        return new Request();
+    }
+
     public static function getConfig()
     {
         return new Config();
     }
 
-    public static function getRequest()
+    public static function getCache()
     {
-        return new Request();
+        return new Cache();
     }
 }
  

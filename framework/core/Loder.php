@@ -15,7 +15,6 @@ class Loder{
         $name_arr = explode('\\', $class_name);
         $name_pre = $name_arr[0];
 
-        array_shift($name_arr);
         $path_str = '';
         $name_count = count($name_arr);
         foreach ($name_arr as $key=>$item) {
@@ -27,17 +26,21 @@ class Loder{
         }
         $path_str = substr($path_str, 0, -1);
 
-        if ($name_pre == 'framework'){
-            $file_path = FRAME_PATH.$path_str.'.php';
+        if ($name_pre == 'framework' || $name_pre == 'app'){
+            $file_path = ROOT_PATH.$path_str.'.php';
             if (is_file($file_path)){
                 include $file_path;
             }
-        }elseif($name_pre == 'app'){
-            $file_path = APP_PATH.$path_str.'.php';
+        }else{
+            $file_path = LIB_PATH.$path_str.'.php';
             if (is_file($file_path)){
                 include $file_path;
             }
         }
+    }
+
+    public static function import($path){
+//        include $path;
     }
 }
  

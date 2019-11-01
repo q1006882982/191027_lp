@@ -11,3 +11,15 @@ location / {
           rewrite ^/(.*)$ /m.php/$1 last;
      }
 }
+
+app中
+    app::getConfig()
+继承controller
+    $this->config
+    
+自动加载
+app
+app->lib
+framework
+
+
