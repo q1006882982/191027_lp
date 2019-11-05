@@ -6,9 +6,14 @@
 namespace framework\core;
 
 class Tool{
+    /**
+     * @param string $data
+     * @param string $default
+     * @return string
+     */
     public static function inputCheck($data, $default='')
     {
-        $pattern = '/^[a-zA-Z]+$/i';
+        $pattern = '/^[0-9a-zA-Z]+$/i';
         if(preg_match($pattern, $data)){
             return $data;
         }else{

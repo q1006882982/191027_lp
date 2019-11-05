@@ -5,21 +5,28 @@
  */
 namespace app\admin\controller;
 
-use framework\core\Cache;
-use framework\core\mvc\Controller;
 
-class Index extends Controller
+class Index extends Base
 {
     public function index()
     {
-        echo 'index';
+        $this->display();
     }
 
-    public function b()
+    public function welcome()
     {
-        $a = $this->request::fget('a');
-        dump($a);
-//        phpinfo();
+        echo 'welcome';
     }
+
+    public function t()
+    {
+        /**
+         * @var $config \framework\core\Config
+         */
+        $config = $this->config;
+        dump($config::get('routing'));
+    }
+
+
 }
  

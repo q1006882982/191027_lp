@@ -12,14 +12,23 @@ location / {
      }
 }
 
+自动加载
+app下
+app->lib下
+framework下
+
 app中
     app::getConfig()
-继承controller
-    $this->config
+    app::getRequtst()
     
-自动加载
-app
-app->lib
-framework
+
+controller
+//方法名
+方法 只可以 数字,大小写字母
+//跳转
+$this->redirect('admin','index','index');
+//生成url
+$url = Request::url('admin','a','index');
+
 
 

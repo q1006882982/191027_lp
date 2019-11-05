@@ -35,7 +35,7 @@ class App{
             throw new \Exception($str);
         }else{
             $config = self::getConfig();
-            $exception_arr = $config::get('base','exception');
+            $exception_arr = $config::get('exception');
             $empty_class = $exception_arr['empty_class'];
             $empty_method = $exception_arr['empty_method'];
             $nclass = new $empty_class();
@@ -55,7 +55,7 @@ class App{
 
     public static function getCache()
     {
-        return new Cache();
+        return Cache::getInstance();
     }
 }
  

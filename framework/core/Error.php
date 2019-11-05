@@ -16,13 +16,45 @@ class Error{
 
     public static function appException($e)
     {
+        $code = $e->getCode();
+        $msg = $e->getMessage();
+        $file = $e->getFile();
+        $line = $e->getLine();
         $time = date('Y-m-d H:i:s');
-        $str = " time {$time} exception_handler: code {$e->getCode()} 
-         <br>错误信息:' {$e->getMessage()}
-         <br>错误位置: file {$e->getFile()} on {$e->getLine()} line";
+        $str = " time {$time} exception_handler: code {$code} 
+         <br>错误信息:' {$msg}
+         <br>错误位置: file {$file} on {$line} line";
+
         if (APP_DEBUG){
             echo $str;
+        }else{
+
         }
+
+//        $exception_type = '';
+//        if (Request::isApp() === true){
+//            $exception_type = 'app';
+//        }elseif (Request::isAjax() === true){
+//            $exception_type = 'ajax';
+//        }elseif (APP_DEBUG === true){
+//            $exception_type = 'pc_debug';
+//        }else{
+//            $exception_type = 'pc';
+//        }
+//
+//        switch ($exception_type){
+//            case 'app':
+//                echo json_encode(['code'=>$code, 'msg'=>$msg, 'data'=>[]]);
+//                break;
+//            case 'ajax':
+//                echo json_encode(['code'=>$code, 'msg'=>$msg, 'data'=>[]]);
+//                break;
+//            case 'pc_debug':
+//                echo $str;
+//                break;
+//            default:
+//                break;
+//        }
     }
     public static function appError($type, $message, $file, $line)
     {

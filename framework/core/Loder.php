@@ -32,7 +32,7 @@ class Loder{
                 include $file_path;
             }
         }else{
-            $file_path = LIB_PATH.$path_str.'.php';
+            $file_path = APP_LIB_PATH.$path_str.'.php';
             if (is_file($file_path)){
                 include $file_path;
             }

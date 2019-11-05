@@ -11,19 +11,6 @@ use framework\core\Request;
 trait Container_common{
 
     protected static $map = [];
-    /**
-     * @var Config
-     */
-    private $config = null;
-    /**
-     * @var Request
-     */
-    private $request = null;
-    /**
-     * @var Cache
-     */
-    private $cache = null;
-
 
     public function __set($key, $val)
     {
@@ -46,19 +33,19 @@ trait Container_common{
         }
     }
 
-    protected function getConfig()
+    private function getConfig()
     {
         return new Config();
     }
 
-    protected function getRequest()
+    private function getRequest()
     {
         return new Request();
     }
 
-    protected function getCache()
+    private function getCache()
     {
-        return new Cache();
+        return Cache::getInstance();
     }
 
 }

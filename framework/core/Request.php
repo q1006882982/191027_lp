@@ -103,8 +103,37 @@ class Request{
         return false;
     }
 
-    public static function url($module, $controller, $method)
+    public static function isAjax()
     {
+        if (isset($_SERVER["HTTP_X_REQUESTED_WITH"])
+            && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=='xmlhttprequest'
+        )
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public static function isApp()
+    {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone') !== false
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false
+            ||strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false
+        ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function url($url)
+    {
+        if (strpos($_SERVER['REQUEST_URI'], '.php') !== false){
+            $url = $_SERVER['SCRIPT_NAME'].'/'.$url;
+        }else{
+            $url = '/'.$url;
+        }
+        return $url;
     }
 }
