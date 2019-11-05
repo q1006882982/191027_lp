@@ -9,8 +9,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('APP_DEBUG', true);
 define('TIME', false);
 //静态目录
-define('STATIC_PATH', '/static/');
-define('STATIC_XADMIN_PATH', STATIC_PATH.'admin/Xadmin/');
+//define('STATIC_PATH', '/static/');
 
 
 require __DIR__.DS.'..'.DS.'framework/start.php';

@@ -18,15 +18,5 @@ class Index extends Base
         echo 'welcome';
     }
 
-    public function t()
-    {
-        /**
-         * @var $config \framework\core\Config
-         */
-        $config = $this->config;
-        dump($config::get('routing'));
-    }
-
-
 }
  

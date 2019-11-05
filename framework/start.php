@@ -18,12 +18,11 @@ if (!APP_DEBUG){
 //加载函数
 include FRAME_PATH.'function.php';
 //加载必须类
-include FRAME_PATH.'core/Loder.php';
-//加载非必须类
-include FRAME_PATH.'core/Error.php';
-include FRAME_PATH.'core/App.php';
-include FRAME_PATH.'core/Config.php';
-include FRAME_PATH.'core/Request.php';
+include FRAME_PATH . 'core/Loder.php';
+//include FRAME_PATH . 'core/Error.php';
+//include FRAME_PATH . 'core/App.php';
+//include FRAME_PATH . 'core/Config.php';
+//include FRAME_PATH . 'core/Request.php';
 
 //自动加载
 \framework\core\Loder::init();
