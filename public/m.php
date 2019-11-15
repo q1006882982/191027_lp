@@ -9,7 +9,9 @@ define('DS', DIRECTORY_SEPARATOR);
 define('APP_DEBUG', true);
 define('TIME', false);
 //静态目录
-//define('STATIC_PATH', '/static/');
+define('STATIC_PATH', '/static/');
+define('ADMIN_PATH', '/static/admin/');
+define('COMMONLIB_PATH', '/static/common/lib/');
 
 
 require __DIR__.DS.'..'.DS.'framework/start.php';

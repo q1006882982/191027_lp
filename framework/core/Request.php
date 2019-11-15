@@ -6,16 +6,13 @@
 namespace framework\core;
 
 class Request{
-    private static $moudle='';
-    private static $controller = '';
-    private static $method = '';
-
-    public static function init()
+    private static $instance = null;
+    
+    private function __construct()
     {
         $path_info = $_SERVER['PATH_INFO'];
         $path_info = substr($path_info, 1);
-        $config = App::getConfig();
-        $default_routing_arr = $config::get('routing');
+        $default_routing_arr = Config::get('routing');
         $default_module = $default_routing_arr['moudle'];
         $default_controller = $default_routing_arr['controller'];
         $default_method = $default_routing_arr['method'];
@@ -25,66 +22,29 @@ class Request{
         }
         $url_path_arr = explode('/', $path_info);
         //path_info非法
-        self::$moudle = Tool::inputCheck($url_path_arr[0], $default_module);
-        self::$controller = Tool::inputCheck($url_path_arr[1], $default_controller);
-        self::$method = Tool::inputCheck($url_path_arr[2], $default_method);
+        define('MO_NAME', $this->inputCheck($url_path_arr[0], $default_module));
+        define('CO_NAME', $this->inputCheck($url_path_arr[1], $default_controller));
+        define('ME_NAME', $this->inputCheck($url_path_arr[2], $default_method));
     }
+    private function __clone(){}
 
-    public static function getMoudle()
+    public static function getInstance()
     {
-        return self::$moudle;
-    }
-
-    public static function getController()
-    {
-        return self::$controller;
-    }
-
-    public static function getMethod()
-    {
-        return self::$method;
-    }
-
-    public static function fget($key='', $default=false)
-    {
-        $get = [];
-        $pattern = '/^[0-9a-zA-Z\.]+$/i';
-        if (empty($key)){
-            foreach ($_GET as $key=>$item) {
-                if (preg_match($pattern, $item)){
-                    $get[$key] = $item;
-                }
-            }
-            return $get;
+        if (self::$instance == null) {
+            self::$instance = new self();
         }
 
-        if (preg_match($pattern, $_GET[$key])){
-            $get[$key] = $_GET[$key];
+        return self::$instance;
+    }
+
+    private function inputCheck($data, $default='')
+    {
+        $pattern = '/^[0-9a-zA-Z]+$/i';
+        if(preg_match($pattern, $data)){
+            return $data;
         }else{
-            $get[$key] = $default;
+            return $default;
         }
-        return $get[$key];
-    }
-
-    public static function fpost($key='', $default=false)
-    {
-        $get = [];
-        $pattern = '/^[0-9a-zA-Z\.]+$/i';
-        if (empty($key)){
-            foreach ($_POST as $key=>$item) {
-                if (preg_match($pattern, $item)){
-                    $get[$key] = $item;
-                }
-            }
-            return $get;
-        }
-
-        if (preg_match($pattern, $_POST[$key])){
-            $get[$key] = $_POST[$key];
-        }else{
-            $get[$key] = $default;
-        }
-        return $get[$key];
     }
 
     public static function isGet()
@@ -127,12 +87,16 @@ class Request{
         }
     }
 
-    public static function url($url)
+    public static function url($url, Array $query_uri_arr=[])
     {
+        $query_uri = '';
+        if (!empty($query_uri_arr)) {
+            $query_uri .= '?'.http_build_query($query_uri_arr);
+        }
         if (strpos($_SERVER['REQUEST_URI'], '.php') !== false){
-            $url = $_SERVER['SCRIPT_NAME'].'/'.$url;
+            $url = $_SERVER['SCRIPT_NAME'].'/'.$url.$query_uri;
         }else{
-            $url = '/'.$url;
+            $url = '/'.$url.$query_uri;
         }
         return $url;
     }

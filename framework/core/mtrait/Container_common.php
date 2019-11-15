@@ -6,7 +6,9 @@
 namespace framework\core\mtrait;
 use framework\core\Cache;
 use framework\core\Config;
+use framework\core\Db;
 use framework\core\Request;
+use framework\core\Validate;
 
 trait Container_common{
 
@@ -40,13 +42,14 @@ trait Container_common{
 
     private function getRequest()
     {
-        return new Request();
+        return Request::getInstance();
     }
 
     private function getCache()
     {
         return Cache::getInstance();
     }
+
 
 }
 

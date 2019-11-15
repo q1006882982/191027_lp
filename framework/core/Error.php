@@ -25,10 +25,27 @@ class Error{
          <br>错误信息:' {$msg}
          <br>错误位置: file {$file} on {$line} line";
 
+        $is_ajax = Request::isAjax();
         if (APP_DEBUG){
-            echo $str;
+            if ($is_ajax) {
+                echo json_encode(['code'=>$code
+                    ,'msg'=>$msg
+                    ,'file'=>$file
+                    ,'line'=>$line
+                    ,'data'=>[]]);
+            }else{
+                echo $str;
+            }
         }else{
-
+            if ($is_ajax) {
+                if ($code == 10) {
+                    //显示的异常
+                    echo json_encode(['code'=>$code, 'msg'=>$msg, 'data'=>[]]);
+                }else{
+                    //不显示的异常
+                    echo json_encode(['code'=>$code, 'msg'=>'未知错误', 'data'=>[]]);
+                }
+            }
         }
 
 //        $exception_type = '';

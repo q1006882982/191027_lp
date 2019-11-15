@@ -10,8 +10,8 @@ namespace app\admin\controller;
 
 class Manage extends Base
 {
-    public function show()
-    {
-        $this->display();
-    }
+    //必填
+    public $main_table = 'manage';
+
+
 }

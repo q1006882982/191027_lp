@@ -10,7 +10,7 @@
 <body>
 
 <div id="header">
-	<p>您好，{$admin.user} [{$admin.level}] [<a href="?a=index">去首页</a>] [<a href="?a=admin&m=logout">退出</a>]</p>
+	<p>您好，{$admin.user} [{$admin.level}] [<a href="<?php echo url('index/index/index');?>">去首页</a>] [<a href="?a=admin&m=logout">退出</a>]</p>
 	<ul class="menu">
 		<li class="first"><a href="<?php echo $this->url('admin/index/welcome');?>" target="in">起始页</a></li>
 		<li><a href="javascript:void(0)">商品</a></li>

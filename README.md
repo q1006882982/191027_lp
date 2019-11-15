@@ -1,7 +1,10 @@
 # 191027_lp
 framework
 
-http://www.m.com/index.php/index/index/index
+BUG
+1 js的分页,页数超过10页有bug
+
+
 
 默认文件
 index m.php;

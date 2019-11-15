@@ -6,11 +6,7 @@
 namespace framework\core;
 
 class Tool{
-    /**
-     * @param string $data
-     * @param string $default
-     * @return string
-     */
+
     public static function inputCheck($data, $default='')
     {
         $pattern = '/^[0-9a-zA-Z]+$/i';
@@ -43,6 +39,11 @@ class Tool{
         }
 
         return $ip;
+    }
+
+    public static function getField($full_table)
+    {
+
     }
 }
  

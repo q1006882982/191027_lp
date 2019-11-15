@@ -10,6 +10,8 @@ define('RUN_PATH', ROOT_PATH.'runtime'.DS);
 define('APP_PATH', ROOT_PATH.'app'.DS);
 define('CONFIG_PATH', ROOT_PATH.'app'.DS.'config'.DS);
 define('APP_LIB_PATH', ROOT_PATH.'app'.DS.'lib'.DS);
+defined('PUBLIC_PATH') or define('PUBLIC_PATH', ROOT_PATH.'public'.DS);
+//defined('UPLOAD_PATH') or define('UPLOAD_PATH', ROOT_PATH.'public'.DS.'upload'.DS);
 
 if (!APP_DEBUG){
     ini_set('display_errors', 'Off');
@@ -23,6 +25,7 @@ include FRAME_PATH . 'core/Loder.php';
 //include FRAME_PATH . 'core/App.php';
 //include FRAME_PATH . 'core/Config.php';
 //include FRAME_PATH . 'core/Request.php';
+//include FRAME_PATH . 'core/mvc/Controller.php';
 
 //自动加载
 \framework\core\Loder::init();

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/common/lib/jquery.1.12/jquery.js"></script>
+    <script src="/static/common/lib/Huploadify/jquery.Huploadify.js"></script>
+    <style>
+        .red{
+            color: ;
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="upload_id" name="myfiles"/>
+
+
+<script>
+    var name = 'id';
+    $('#upload_'+name).Huploadify({
+                auto:true,
+                fileTypeExts:'*.jpg;*.png;*.jpeg',
+                multi:false,
+                fileSizeLimit:2048,
+                removeTimeout:1000,
+                fileObjName:'<?php echo $name;?>',
+                uploader:'<',
+            onUploadComplete:function(file,data,response){
+        data = JSON.parse(data);
+        y_$input_img.val(data.data.url);
+        y_$img.attr('src', data.data.url);
+    },
+    onCancel:function(file){
+        file = file['name'];
+        console.log('需要删除的文件:'+file);
+        // console.log();
+        if (file !== null || file !== undefined || file !== '') {
+            $.ajax({
+                type:"POST",
+                url:'DeleteFile.php',
+                data: "deleteimg=" + file,
+                success:function(response){
+                    console.log(response);
+                }
+            });
+        }
+    }
+
+    });
+
+
+</script>
+
+</body>
+</html>

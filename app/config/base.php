@@ -29,5 +29,16 @@ return [
         //file, redis
         'type'=>'file'
     ]
+    ,'page'=>[
+        'page_size'=>8
+    ]
+    ,'upload'=>[
+        'img'=>[
+            'allow_type'=>['image/jpeg','image/pjpeg','image/png','image/x-png','image/gif']
+            ,'allow_suffix'=>['jpg', 'jpeg', 'png', 'gif']
+            ,'max_size'=>1024*1024 //k为单位
+            ,'path'=>'upload/img/'
+        ]
+    ]
 ];
  

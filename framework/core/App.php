@@ -9,11 +9,11 @@ class App{
     public static function init()
     {
         //request
-        Request::init();
+        Request::getInstance();
         //mvc
-        $module = Request::getMoudle();
-        $controller = Request::getController();
-        $method = Request::getMethod();
+        $module = MO_NAME;
+        $controller = CO_NAME;
+        $method = ME_NAME;
         $nclass_str = "app\\{$module}\\controller\\{$controller}";
         $is_class = class_exists($nclass_str);
         if (!$is_class){
@@ -34,28 +34,12 @@ class App{
         if (APP_DEBUG){
             throw new \Exception($str);
         }else{
-            $config = self::getConfig();
-            $exception_arr = $config::get('exception');
+            $exception_arr = Config::get('exception');
             $empty_class = $exception_arr['empty_class'];
             $empty_method = $exception_arr['empty_method'];
             $nclass = new $empty_class();
             $nclass->$empty_method();
         }
-    }
-
-    public static function getRequest()
-    {
-        return new Request();
-    }
-
-    public static function getConfig()
-    {
-        return new Config();
-    }
-
-    public static function getCache()
-    {
-        return Cache::getInstance();
     }
 }
  

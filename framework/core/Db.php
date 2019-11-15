@@ -8,6 +8,7 @@ namespace framework\core;
 class Db{
     private $pdo = null;
     private $table = '';
+    private $main_key = 'id';
     private $field = '*';
     private $left_join = '';
     private $where = '';
@@ -31,8 +32,7 @@ class Db{
     }
     private function __construct($connect)
     {
-        $config = App::getConfig();
-        $database_arr = $config::get('database');
+        $database_arr = Config::get('database');
         try {
             if (empty($connect)) {
                 $connect['db_dns'] = $database_arr['db_dns'];
@@ -48,14 +48,6 @@ class Db{
     }
     private function __clone(){}
     private function execute($sql, $param=[]) {
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute($param);
-        } catch (\PDOException  $e) {
-            if(APP_DEBUG){
-                throw new \Exception('SQL语句：'.$sql.'<br />错误信息：'.$e->getMessage());
-            }
-        }
         //初始化
         $this->table = '';
         $this->field = '*';
@@ -66,6 +58,15 @@ class Db{
         $this->group = '';
         $this->order = '';
         $this->limit = '';
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($param);
+        } catch (\PDOException  $e) {
+            if(APP_DEBUG){
+                throw new \Exception('SQL语句：'.$sql.'<br />错误信息：'.$e->getMessage());
+            }
+        }
 
         return $stmt;
     }
@@ -93,6 +94,11 @@ class Db{
         $that = self::getInstance($connect);
         $that->table = $table;
         return $that;
+    }
+
+    public function getMainKey()
+    {
+        return $this->main_key;
     }
     public function field($field)
     {

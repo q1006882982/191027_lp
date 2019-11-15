@@ -7,7 +7,7 @@ namespace framework\core\cache;
 use m\Tool;
 
 class File implements Drive{
-    public $tag = 'lp';
+    private $tag = 'lp';
     private $base_path = RUN_PATH.'cache'.DS;
 
     //dir_path 例子 /a/b/c
@@ -49,12 +49,11 @@ class File implements Drive{
         if ($exp_time){
             $time = time() + $exp_time;
         }
-        $json_val = json_encode($val);
         $val = <<<EOT
 <?php
 return [
     'time'=>{$time}
-    ,'val'=>'{$json_val}'
+    ,'val'=>'{$val}'
 ];
 EOT;
 
@@ -69,10 +68,10 @@ EOT;
         $file_path = $this->base_path.$this->tag.DS.$key.'.php';
         $is_file = file_exists($file_path);
         if (!$is_file){
-            return null;
+            return false;
         }
         $val_arr = include $file_path;
-        return json_decode($val_arr['val'], true);
+        return $val_arr['val'];
     }
 
     public function del($key, $tag='')
